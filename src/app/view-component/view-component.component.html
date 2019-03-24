@@ -1,0 +1,12 @@
+User name:
+<input type="text" [(ngModel)]="userName">
+<button (click)="search()">Search</button>
+
+<ul *ngIf="response">
+  <!-- Usar um ? faz o angular perguntar se a resposta é válida. Se for inválida, não exibe -->
+  <!-- {{response?.login}} -->
+  <li>Login name: {{response.login}}</li>
+  <li>Repos: {{response.public_repos}}</li>
+  <li>Gists: {{response.public_gists}}</li>
+  <li>Followers: {{response.followers}}</li>
+</ul>
