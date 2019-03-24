@@ -20,7 +20,7 @@ export class AppComponent {
   users = {};
 
   loadUsers() {
-    const url = 'https://swapi.co/api/people';
+    const url = 'https://api.github.com/users/koushikkothagal'; // exemplo da API do github
     let obs = this.http.get(url);
     obs.subscribe((response) => console.log(response));
   }
