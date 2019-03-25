@@ -11,13 +11,21 @@
 </form>
 
 <p>Tipo: {{selectedOption}}</p>
-<ul *ngIf="response">
+<ul *ngIf="response && selectedOption=='filme'">
   <!-- Usar um ? faz o angular perguntar se a resposta é válida. Se for inválida, não exibe -->
   <!-- {{response?.login}} -->
-  <li>Login name: {{response.login}}</li>
-  <li>Repos: {{response.public_repos}}</li>
-  <li>Gists: {{response.public_gists}}</li>
-  <li>Followers: {{response.followers}}</li>
-  <li>---</li>
-  <li></li>
+  <li>Filme: {{response.results[0].title}}</li>
+  <li *ngFor="let personagem of personagens">Personagem: {{personagem}}</li>
+</ul>
+
+<ul *ngIf="selectedOption=='nome'">
+  <!-- Usar um ? faz o angular perguntar se a resposta é válida. Se for inválida, não exibe -->
+  <!-- {{response?.login}} -->
+  <li *ngFor="let personagem of personagens">
+    Nome: {{personagem}} <br>
+    Lista de Filmes: <br>
+      <ul>
+        <li *ngFor="let filme of filmes">{{filme}}</li>
+      </ul>
+  </li>
 </ul>

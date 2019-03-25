@@ -1,32 +1,3 @@
-<!-- <section>
-<h1>Welcome to {{ title }}!</h1>
-
-<div>
-  <form #searchForm="ngForm" (ngSubmit)="onSubmit()">
-    <label for="search">Buscar por:
-      <input type="text" id="search" name="search" [(ngModel)]="search" required>
-    </label>
-
-    <label for="movie">Tipo:
-      <select id="movie" name="movie" [(ngModel)]="movie" required>
-        <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
-      </select>
-    </label>
-    <button type="submit" [disabled]="!searchForm.form.valid">Mostrar Filme ou Personagem</button>
-  </form>
-</div>
-<div [hidden]="!submitted">
-    <strong>Texto digitado:</strong><span style="color:red;">{{search}}</span>
-    <strong>Opção escolhida: </strong><span style="color:blue;">{{movie}}</span>
-</div>
-<p>
-  Form Status: {{searchForm.status}}
-</p>
-<button (click)="loadUsers()">Fetch API</button>
-
-<ul>
-  <li *ngFor="let user of users">{{user.count}}</li>
-</ul> -->
 <section>
 <app-view-component></app-view-component>
 
