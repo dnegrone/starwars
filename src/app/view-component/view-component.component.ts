@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import {FormControl} from '@angular/forms';
-// import {Observable} from 'rxjs';
-// import {map, startWith} from 'rxjs/operators';
-
 @Component({
   selector: 'app-view-component',
   templateUrl: './view-component.component.html',
@@ -17,27 +13,16 @@ export class ViewComponentComponent implements OnInit {
   url: string = "";
   response: any;
   films:string[] = [];
-  characters:string[] = [];
-
-
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  // filteredOptions: Observable<string[]>;
-
+  personagens:string[] = [];
 
   checkSelect() {
     if(this.selectedOption == 'filme') {
-      this.url = "https://swapi.co/api/films/";
+      this.url = "https://swapi.co/api/films?search=";
     }
     if (this.selectedOption == 'nome') {
-      this.url = "https://swapi.co/api/people/";
+      this.url = "https://swapi.co/api/people?search=";
     }
     console.log(this.selectedOption);
-  }
-
-  searchFilm(film) {
-    console.log(film);
-    return film == this.userName;
   }
 
   selectChangeHandler (event: any) {
@@ -49,20 +34,18 @@ export class ViewComponentComponent implements OnInit {
   ngOnInit() { }
 
   search() {
-    this.http.get(this.url)
+    this.http.get(this.url + this.userName)
     .subscribe((response) => {
       this.response = response;
-
-      // Verificando se o filme foi selecionado e populando o array com os nomes dos filmes
       if (this.selectedOption == 'filme') {
-        for(let i:number=0; i<this.response.results.length; i++) {
-          this.films.push(this.response.results[i].title);
+        for(let i:number = 0;i<=2;i++) {
+          this.http.get(this.response.results[0].characters[i]).subscribe((response) => {
+            this.response = response;
+            this.personagens.push(this.response.name);
+          })
         }
-        this.films.find(this.searchFilm);
       }
-
-      console.log(this.films);
-      // console.log(this.response);
+      console.log(this.personagens);
     })
 
   }
